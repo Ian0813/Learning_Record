@@ -66,7 +66,7 @@ int main(int argc, char *argv[]){
 		result = setbits(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), atoi(argv[4]));
 		printf("Result : %d\n", result);
 	}else{
-		printf("Please enter correct argument.\n");
+		printf("Please enter the correct arguments.\n");
 	}
 
 	return 0;
