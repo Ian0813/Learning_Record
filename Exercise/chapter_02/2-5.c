@@ -39,8 +39,6 @@ int any(char *s1, char *s2){
 }
 
 
-
-
 int main(int argc, char *argv[]){
 
 	int position;	
@@ -48,7 +46,7 @@ int main(int argc, char *argv[]){
 		
 		position = any(argv[1], argv[2]);
 	}else{
-		printf("Please enter a correct argument.\n");				
+		printf("Please enter the correct arguments.\n");
 	}
 
 	if(position > -1){

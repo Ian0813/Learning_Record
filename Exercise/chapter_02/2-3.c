@@ -50,7 +50,7 @@ int main(int argc, char *argv[]){
 		num = htoi(argv[1]);
 		printf("Result : %d\n", num);
 	}else {
-		printf("Please enter an correct argument.\n");
+		printf("Please enter the correct arguments.\n");
 	}
 
 }
