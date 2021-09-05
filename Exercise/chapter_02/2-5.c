@@ -3,8 +3,8 @@
  *
  *       Filename:  2-5.c
  *
- *    Description:  Return the first location in the string s1 where any character from the string sw occurs, or -1 
- *    				if s1 contains no characters from s2
+ *    Description:  Return the first location in the string s1 where any character from 
+ *    				the string s2 occurs, or -1 if s1 contains no characters from s2.
  *
  *        Version:  1.0
  *        Created:  2021年09月01日 07時26分32秒
