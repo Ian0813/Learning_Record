@@ -1,14 +1,13 @@
 /*
  * =====================================================================================
  *
- *       Filename:  3-5.c
+ *       Filename:  3-6.c
  *
- *    Description:  The function itob(n, s, b)
- *    				will convert the integer n into a base b character representation
- *    				in the string s. 
+ *    Description:  The fixed wide length version of function itoa() that have a third 
+ *    				parameter to set the wide length of a string.
  *
  *        Version:  1.0
- *        Created:  2021年09月18日 19時14分19秒
+ *        Created:  2021年09月18日 20時16分23秒
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -20,8 +19,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-
 
 void reverse(char *s){
 
@@ -35,30 +32,27 @@ void reverse(char *s){
 }
 
 
-void itob(int n, char *s, int base){
+void itob(int n, char *s, int wide){
 
-	int sign, index = 0;
+	int sign, index = 0, padding;
 	
 	if((sign = n) < 0){
 		n = -n;
 	}
 
 	do{
-		if(n%base > 9){
-			s[index++] = (n%base) + 'A';
-		}else{
-			s[index++] = (n%base) + '0';
-		}
-	}while(n/=base);
+		s[index++] = (n%10) + '0';
+	}while(n/=10);
 
 	if(sign < 0){
 		s[index++] = '-';
 	}
 
+	padding = wide - strlen(s);
+	memset((s + (strlen(s))), 32, padding);	
+
 	reverse(s);
 }
-
-
 
 
 
@@ -69,19 +63,19 @@ int main(int argc, char *argv[]){
 
 
 	if(argc > 2){
-		int base = atoi(argv[2]);
+		int wide = atoi(argv[2]);
 		printf("Converting...\n");
-		itob(atoi(argv[1]), str, base);
-		if(base == 16){
-			printf("Result : 0x%s\n", str);
-		}else{
-			printf("Result : %s\n", str);
-		}		
+		itob(atoi(argv[1]), str, wide);
+		printf("Result : %s, len %ld\n", str, strlen(str));
 	}else{
 		printf("Please enter the correct arguments.\n");
 	}
 
 	return 0;
 }
+
+
+
+
 
 
