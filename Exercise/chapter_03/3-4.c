@@ -34,7 +34,7 @@ void itoa_v2(int n, char *str){
 	do{
 		if(sign < 0){
 			if((n%10) + key_value == 10){
-				str[index++] = (n%10) + '0';  	
+				str[index++] = '0';  	
 			}else{
 				str[index++] = (n%10) + '0' + key_value;
 				key_value = 0;
