@@ -3,8 +3,8 @@
  *
  *       Filename:  3-6.c
  *
- *    Description:  The fixed wide length version of function itoa() that have a third 
- *    				parameter to set the wide length of a string.
+ *    Description:  The fixed width length version of function itoa() that have a third
+ *    				parameter to set the width of a string.
  *
  *        Version:  1.0
  *        Created:  2021年09月18日 20時16分23秒
@@ -32,7 +32,7 @@ void reverse(char *s){
 }
 
 
-void itob(int n, char *s, int wide){
+void itob(int n, char *s, int width){
 
 	int sign, index = 0, padding;
 	
@@ -48,7 +48,7 @@ void itob(int n, char *s, int wide){
 		s[index++] = '-';
 	}
 
-	padding = wide - strlen(s);
+	padding = width - strlen(s);
 	memset((s + (strlen(s))), 32, padding);	
 
 	reverse(s);
@@ -63,9 +63,9 @@ int main(int argc, char *argv[]){
 
 
 	if(argc > 2){
-		int wide = atoi(argv[2]);
+		int width = atoi(argv[2]);
 		printf("Converting...\n");
-		itob(atoi(argv[1]), str, wide);
+		itob(atoi(argv[1]), str, width);
 		printf("Result : %s, len %ld\n", str, strlen(str));
 	}else{
 		printf("Please enter the correct arguments.\n");
