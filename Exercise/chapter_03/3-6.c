@@ -32,7 +32,7 @@ void reverse(char *s){
 }
 
 
-void itob(int n, char *s, int width){
+void itoa(int n, char *s, int width){
 
 	int sign, index = 0, padding;
 	
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]){
 	if(argc > 2){
 		int width = atoi(argv[2]);
 		printf("Converting...\n");
-		itob(atoi(argv[1]), str, width);
+		itoa(atoi(argv[1]), str, width);
 		printf("Result : %s, len %ld\n", str, strlen(str));
 	}else{
 		printf("Please enter the correct arguments.\n");
