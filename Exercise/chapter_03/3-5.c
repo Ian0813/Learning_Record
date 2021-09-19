@@ -45,7 +45,7 @@ void itob(int n, char *s, int base){
 
 	do{
 		if(n%base > 9){
-			s[index++] = (n%base) + 'A';
+			s[index++] = (n%base) - 10 + 'A';
 		}else{
 			s[index++] = (n%base) + '0';
 		}
