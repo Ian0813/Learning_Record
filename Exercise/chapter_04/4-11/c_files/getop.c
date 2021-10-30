@@ -43,19 +43,10 @@ int getop(char s[]){
 	int i, op, flag, temp;
 	static int c = -1;
 	
-	if(c == ' ' || c == '\t' || c == EOF || c == '\n'){
+	if(c == ' ' || c == '\t' || c == EOF){
 		while((s[0] = c = getch()) == ' ' || c == '\t')
 			;
-	}else{
-		//getchar();
-		printf("c : %d\n", c);
 	}
-
-	//else if(c != ' ' && c != '\t'){
-	//	printf("c : %c\n", c);
-	//	s[0] = c;
-	//	c = -1;
-	//}
 
 	s[1] = '\0';
 
@@ -79,7 +70,6 @@ int getop(char s[]){
 	}
 
 	if(flag == 1){
-		ungetch(c);
 		return '-';
 	}
 
