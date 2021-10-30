@@ -17,5 +17,5 @@ $(CFILES): %: %.c
 
 
 clean:
-	rm $(wildcard exe/*)
+	rm -f $(wildcard exe/*)
 
