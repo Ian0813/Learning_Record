@@ -26,6 +26,7 @@ int trim(char *s){
 
 	for(n = strlen(s) - 1; n >= 0; n--){
 		if(s[n] != 32 && s[n] != '\t' && s[n] != '\n'){
+			printf("n : %d\n", n);
 			break;
 		}
 	}
@@ -35,11 +36,10 @@ int trim(char *s){
 }
 
 
-
-
 int main(int argc, char *argv[]){
 	
 	int position;
+
 
 	if(argc > 1){
 		printf("trim...\n");
