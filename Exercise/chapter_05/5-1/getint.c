@@ -44,7 +44,6 @@ int getint(int *pn){
 
 
 	sign = (c == '-') ? -1: 1;
-	printf("sign : %d\n", sign);
 	if( c == '+' || c == '-'){
 		mark = 1;
 		c = getch();

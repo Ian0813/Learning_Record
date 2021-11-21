@@ -33,7 +33,7 @@ int getch(void) /* get a (possibily pushed bach) character */
 
 void ungetch(int c) /*  push character back on input */
 {
-	printf("[%s] %d, %c\n", __func__, c, c);
+	//printf("[%s] %d, %c\n", __func__, c, c);
 	if(bufp >= BUFSIZE){
 		printf("ungetch : too many characters \n");
 	}else{
