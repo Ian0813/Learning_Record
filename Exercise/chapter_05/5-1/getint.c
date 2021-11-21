@@ -57,7 +57,7 @@ int getint(int *pn){
 
 	*pn *= sign;
 
-	if(c != EOF && *pn == 0){
+	if(c != EOF && mark == 1){
 		if(sign == 1){
 			ungetch('+');
 		}else if(sign == -1){
