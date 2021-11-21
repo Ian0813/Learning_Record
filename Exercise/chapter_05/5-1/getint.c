@@ -29,7 +29,7 @@ void ungetch(int);
 
 int getint(int *pn){
 
-	int c = 0, sign = 0, mark = 0; /* the variable mark is a flag to identify that notation whether is plus('+') or minus('-'). */
+	int c = 0, sign = 0, mark = 0; /* The variable mark is a recorder to observe that notation either '+' or '-' whether occurs. */
 
 	while(isspace(c = getch()))  /*  skip white space */
 		;
