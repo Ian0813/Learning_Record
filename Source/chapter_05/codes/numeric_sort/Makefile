@@ -3,7 +3,8 @@ CFLAGS= -g -fsanitize=address
 CLIBS= -lm
 MAINS= main.c data_generator.c sample.c
 CFILES=$(patsubst %.c, %, $(filter-out $(MAINS), $(shell ls *.c)))
-
+$(shell if [ !  -d "exe" ];then mkdir exe ; fi)
+$(shell if [ ! -d "objs" ]; then mkdir objs ; fi)
 
 
 .PHONY: all clean
@@ -22,4 +23,4 @@ DATA:
 
 
 clean:
-	rm -f objs/* exe/*
+	rm -rf objs exe
