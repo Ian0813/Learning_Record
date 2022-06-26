@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS= -g -fsanitize=address -Wall$/;"	m
+CLIBS	Makefile	/^CLIBS= -lpthread -lm$/;"	m
+COBJECTS	Makefile	/^COBJECTS=$(patsubst %.c, %, $(shell ls | grep -F .c))$/;"	m
+EXE	Makefile	/^EXE=$(notdir $(shell pwd))$/;"	m
+MAXWORD	keyword_counter.c	24;"	d	file:
+MAX_CHAR	getch.c	21;"	d	file:
+addln	keyword_counter.c	/^void addln(struct tnode *p, int linenum) {$/;"	f
+addtreex	keyword_counter.c	/^struct tnode *addtreex(struct tnode *p, char *w, int linenum) {$/;"	f
+ch_buffer	getch.c	/^static char ch_buffer[MAX_CHAR];$/;"	v	file:
+getch	getch.c	/^int getch(void) {$/;"	f
+getword	keyword_counter.c	/^int getword(char *word, int lim) {$/;"	f
+index	getch.c	/^static int index = -1;$/;"	v	file:
+lalloc	keyword_counter.c	/^struct linklist *lalloc(void) {$/;"	f
+left	common.h	/^	struct tnode *left;   \/* left child *\/$/;"	m	struct:tnode	typeref:struct:tnode::tnode
+lines	common.h	/^	struct linklist *lines;  \/* line number *\/$/;"	m	struct:tnode	typeref:struct:tnode::linklist
+linklist	common.h	/^struct linklist { \/* linked list of line numbers *\/$/;"	s
+lnum	common.h	/^	int lnum;$/;"	m	struct:linklist
+main	keyword_counter.c	/^int main(int argc, char *argv[]) {$/;"	f
+noiseword	keyword_counter.c	/^int noiseword(char *w) {$/;"	f
+ptr	common.h	/^	struct linklist *ptr;$/;"	m	struct:linklist	typeref:struct:linklist::linklist
+right	common.h	/^	struct tnode *right;  \/* right child *\/$/;"	m	struct:tnode	typeref:struct:tnode::tnode
+talloc	keyword_counter.c	/^struct tnode *talloc(void) {$/;"	f
+tfree	keyword_counter.c	/^void tfree(struct tnode *ptr) {$/;"	f
+tnode	common.h	/^struct tnode { \/*  the tree node *\/$/;"	s
+treexprint	keyword_counter.c	/^void treexprint(struct tnode *p) {$/;"	f
+ungetch	getch.c	/^void ungetch(int ch) {$/;"	f
+word	common.h	/^	char *word;   \/* points to the text *\/	$/;"	m	struct:tnode
