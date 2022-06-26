@@ -104,7 +104,7 @@ void tfree(struct tnode *ptr) {
 	return;
 }
 
-/* sortlist : sort list of pointers to tree nodes */
+/* sortlist : sort list of pointers to tree nodes (shell sort algorithm) */
 void sortlist(void) {
 
     int gap, i, j; 
