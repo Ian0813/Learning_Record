@@ -22,36 +22,26 @@
  */
 struct tnode { /*  the tree node */
 	char *word;   /* points to the text */	
-	struct linklist *lines;  /* line number */
+	int count;    /*  number of occurences */
 	struct tnode *left;   /* left child */
 	struct tnode *right;  /* right child */
-};
-
-struct linklist { /* linked list of line numbers */
-	int lnum;
-	struct linklist *ptr;
 };
 
 int getch(void);
 
 void ungetch(int ch);
 
-struct tnode *addtreex(struct tnode *, char *, int);
-
-void treexprint(struct tnode *);
+struct tnode *addtree(struct tnode *, char *);
 
 struct tnode *talloc(void);
-
-struct linklist *lalloc(void);
 
 void tfree(struct tnode *ptr); 
 
 int getword(char *, int);
 
-void addln(struct tnode *, int);
+void sortlist(void);
 
-int noiseword(char *);
-
+void treestore(struct tnode *);
 #if 0
 struct key *binsearch(char *, struct key *, int);
 #endif

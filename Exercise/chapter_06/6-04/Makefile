@@ -19,5 +19,3 @@ GENERATE_TAGS:
 
 clean:
 	rm -rf $(EXE) *.o tags
-
-

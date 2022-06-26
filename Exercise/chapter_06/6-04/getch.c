@@ -24,7 +24,6 @@ static char ch_buffer[MAX_CHAR];
 static int index = -1;
 
 int getch(void) {
-
 	if (index != -1) {
 		return ch_buffer[index--];
 	} else {
@@ -33,7 +32,6 @@ int getch(void) {
 }
 
 void ungetch(int ch) {
-
 	ch_buffer[++index] = ch;	
 	return;
 }
