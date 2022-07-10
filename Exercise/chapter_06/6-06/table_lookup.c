@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  table_lookup.c
+ *       Filename:  table_lookup.
  *
  *    Description:  a hash table for searching a specific word. 
  *     				Add a undef() function to remove a name and definition from the hash
@@ -22,34 +22,30 @@
 #include <string.h>
 #include "common.h" 
 #include <time.h>
+#include <ctype.h>
+
+#define MAXWORD 100
 
 static struct nlist *hashtab[HASHSIZE]; /* pointer table */
 
 void main(int argc, char *argv[]) {
-	
-	if (argc > 1) {
-
-		srand(time(NULL));
-
-	    /* The index points to the first argument passing from outside. */ 
-	    int start_index = 1, random_num;
-	    struct nlist *np = NULL;
-
-	    for(; start_index < argc; start_index++) {
-	    	np = install(argv[start_index], reverse(argv[start_index]));					
-	    }
-		show_hashtab();
-		random_num = rand() % (start_index - 1) + 1;
-		printf("Remove %s in the hash table.\n", argv[random_num]);
-		undef(argv[random_num]);
-		show_hashtab();
-		tfree();
-
-	} else {
-		printf("[%s] Please enter the correct arguments.\n", __FILE__);
-		exit(EXIT_FAILURE);
-	}
 		
+	char w[MAXWORD];
+	struct nlist *p = NULL;
+
+	while (getword(w, MAXWORD) != EOF) {
+		if (strcmp(w, "#") == 0) {   /*beginning of direct  */
+			getdef();	
+		} else if (!isalpha(w[0])) {
+			printf("[%s] %s, @%d\n", __func__, w, __LINE__);         /* cannot be defined */		
+		} else if ((p = lookup(w)) == NULL) {
+			printf("[%s] %s, @%d\n", __func__, w, __LINE__);         /* not defined  */				
+		} else {
+			printf("[%s] %s, @%d\n", __func__, p->defn, __LINE__);         /* not defined  */				
+			ungets(p->defn);         /* push definition */
+		}
+	}
+
 	return;    
 }
 
@@ -113,7 +109,7 @@ struct nlist *install(char *name, char *defn) {
 	if ((np->defn = strdup(defn)) == NULL) {
 		return NULL;
 	}
-	free(defn);
+	//free(defn);
 
 	return np;
 }
@@ -184,5 +180,113 @@ void undef(char *s) {
 		free((void *) np->defn);
 		free((void *) np);   /* free allocated structure */
 	}
+	return;
+}
+
+/* getdef : get definition and install it  */
+void getdef(void) {
+	
+	int c, i;
+	char def[MAXWORD], dir[MAXWORD], name[MAXWORD]; 
+
+	skipblanks();
+	if (!isalpha(getword(dir, MAXWORD))) {
+		error(dir[0], "getdef : expecting a directive after #");	
+	} else if (strcmp(dir, "define") == 0) {
+		skipblanks();		
+		if (!isalpha(getword(name, MAXWORD))) {
+			error(name[0], "getdef : non-alpha - name expected.");
+		} else {
+			skipblanks();
+			for (i = 0; i < MAXWORD; i++) {
+				if ((def[i] = getch()) == EOF || def[i] == '\n') {
+					break;   /* enf of definition */
+				} 
+			}
+			def[i] = '\0';
+			if (i <= 0) { /* no definition ? */
+				error('\n', "getdef : incomplete define.");
+			} else {    /* install */
+				printf("[%s] name : %s, def : %s\n", __func__, name, def);
+				install(name, def);
+			}
+		}
+	} else if (strcmp(dir, "undef") == 0) {
+		skipblanks();	
+		if (!isalpha(getword(name, MAXWORD))) {
+			error(name[0], "getdef : non-alpha in undef.");
+		} else {
+			undef(name);
+		} 
+	} else {
+		error(dir[0], "getdef : expecting a directive after #.");	
+	}
+	return;
+}
+
+/* error : print error message and skip the rest of the line */
+void error(int c, char *s) {
+	printf("error : %s\n", s);
+	while (c != EOF && c != '\n') {
+		c = getch();
+	}
+}
+
+/* skipblanks :  skip blank and tab characters */ 
+void skipblanks(void) {
+	int c;
+	
+	while ((c = getch()) == ' ' || c == '\t') 
+			;
+	ungetch(c);
+	
+	return;
+}
+
+/* getword : get next word or character from input */
+int getword(char *word, int lim) {
+
+	int c;
+	char *w = word;
+
+	while (isspace(c = getch())) 
+		;
+
+	if (c != EOF) {
+		*w++ = c;
+	}
+
+	if (!isalpha(c)) {
+		*w = '\0';
+		return c;
+	}
+
+	for (; --lim > 0; w++) {
+		if (!isalnum(*w = getch())) {
+			ungetch(*w);
+			break;
+		}
+	}
+
+	*w = '\0';
+	return word[0];
+}
+
+void ungets(char *c) {
+
+	int flag = 0;
+	int len = strlen(c) - 1;
+	c += len;
+
+	while (len >= 0) {
+		flag = 1;
+		ungetch(*c--);
+		len--;
+	}
+
+	if (flag == 0) {
+		printf("No remains character.\n");
+	}
+
 	return;
 }
