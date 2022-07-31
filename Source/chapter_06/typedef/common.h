@@ -38,3 +38,5 @@ Treeptr new_node(Treeptr node, int value);
 void show_nodes(Treeptr node);
 
 void release_nodes(Treeptr node);
+
+int tree_height(Treeptr);

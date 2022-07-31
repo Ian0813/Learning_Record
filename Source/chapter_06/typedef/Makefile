@@ -5,7 +5,7 @@ EXE_FILE=$(wildcard *.c)
 
 .PHONY: all clean
 
-all:
+all: clean
 	$(CC) $(CFLAGS) -o $(basename $(EXE_FILE)) $(wildcard *.c) $(CLIBS)
 
 

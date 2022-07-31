@@ -41,7 +41,9 @@ void main(int argc, char *argv[]) {
 		value = rand() % 100 + 1;	
 		root = new_node(root, value);
 	}
-
+	printf("The root node value: %d\n", root->value);
+	printf("The tree height: %d\n", tree_height(root));
+	
 	show_nodes(root);
 	release_nodes(root);
 
@@ -57,7 +59,7 @@ Treeptr new_node(Treeptr node, int value) {
 			perror("malloc ");			
 			exit(EXIT_FAILURE);
 		}
-		
+
 		node->value = value;
 		node->left = node->right = NULL;
 		
@@ -81,6 +83,19 @@ void show_nodes(Treeptr node) {
 	return;
 }
 
+int tree_height(Treeptr node) {
+	
+	int left_num = 0, right_num = 0;
+
+	if (node->left != NULL) {
+		left_num += tree_height(node->left);
+	} else if (node->right != NULL) {
+		right_num += tree_height(node->right);
+	}
+
+	return left_num > right_num ? left_num + 1 : right_num + 1;
+}	
+
 void release_nodes(Treeptr node) {
 
 	if (node != NULL) {
@@ -88,7 +103,6 @@ void release_nodes(Treeptr node) {
 		release_nodes(node->right);
 		free(node);
 	}
-	
 	return;
 }
 
