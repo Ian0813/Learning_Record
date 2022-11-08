@@ -26,7 +26,7 @@
 /* The implementation for saving time. */ 
 #define isupper_v2(c) (((c) >= 'A' && (c) <= 'Z') ? 1 : 0 )
 
-/* The implementation for saving space. */ 
+/* The implementation for saving space. */
 /* isupper_v1: return 1 (true) if c is an upper case letter */
 int isupper_v1(char c) {
 
@@ -43,7 +43,7 @@ int main(void) {
 
     char ch;
     
-	while(printf("Input a character: \n"), (ch = getchar()) != EOF) {
+    while(printf("Input a character: \n"), (ch = getchar()) != EOF) {
 #ifdef SAVE_TIME  
         if (isupper_v2(ch)) {
 #elif defined(SAVE_SPACE)
@@ -53,8 +53,8 @@ int main(void) {
         } else {
             printf("[%ld] %c is lowercase.\n", time(NULL), ch);
         }
-		getchar();
-	}
+        getchar();
+    }
 
     return 0;
 }
