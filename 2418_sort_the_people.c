@@ -3,7 +3,7 @@
  *
  *       Filename:  2418_sort_the_people.c
  *
- *    Description:  Sort the people  
+ *    Description:  Sort the people
  *
  *       Compiler:  gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
  *
@@ -22,7 +22,7 @@ void bubble_sort(int *arr, int size, char **names) {
 
     char *temp_str = NULL;
     int temp_int = 0;
-	int flag = 0; 
+	int flag = 0;
 
     for (int i = 0; i < size; size--) {
         for (int j = i; j < (size-1); j++) {
@@ -38,7 +38,7 @@ void bubble_sort(int *arr, int size, char **names) {
         }
 		if (!flag)
             break;
-        flag = 0; 
+        flag = 0;
     }
     return;
 }
