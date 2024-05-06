@@ -76,7 +76,7 @@ struct list_node *traversal(struct TreeNode *root, int targetSum, int summarize,
         summarize += root->val;
 
         if (is_leaf(root)) {
-            if (root->val == targetSum) {
+            if (summarize == targetSum) {
                 head = add_node(head, root);
             }
         }
