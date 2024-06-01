@@ -103,6 +103,34 @@ void delete_queue(struct queue *q) {
     return;
 }
 
+bool check_order(int level, NodePtr node, int last_even, int last_odd) {
+
+    bool rc = true;
+
+    if (level%2) {
+        if (!(node->val%2)) {
+            if (last_even > node->val) {
+                last_even = node->val;                                                        
+            } else {
+                rc = false;  
+            }    
+        } else {
+            rc = false;   
+        }
+    } else {
+        if (node->val%2) {
+            if (last_odd < node->val) {
+                last_odd = node->val;
+            } else {
+                rc = false;
+            }
+        } else {
+            rc = false;
+        }
+    }
+	return rc;
+}
+
 bool isEvenOddTree(struct TreeNode* root) {
 
     struct queue *q = create_queue();
@@ -122,34 +150,8 @@ bool isEvenOddTree(struct TreeNode* root) {
 
                 dequeue(q);
 
-                if (level%2) {
-
-                    if (!(node->val%2)) {
-                        if (last_even > node->val) {
-                            last_even = node->val;                                                        
-                        } else {
-                            rc = false;  
-                            break;
-                        }    
-                    } else {
-                        rc = false;   
-                        break;
-                    }
-
-                } else {
-
-                    if (node->val%2) {
-                        if (last_odd < node->val) {
-                            last_odd = node->val;
-                        } else {
-                            rc = false;
-                            break;
-                        }
-                    } else {
-                        rc = false;
-                        break;
-                    }
-
+                if (!(rc = check_order(level, node, last_even, last_odd))) {
+                    break;
                 }
 
                 if (node->left)
