@@ -24,8 +24,8 @@ static int get_great_common_divisor(int v1, int v2) {
     int t1 = MAX(v1, v2), t2 = MIN(v1, v2), value = 0;
 
     if ((t1%t2)) {
-        value = get_great_common_divisor(t2, t1%t2); 
-    } 
+        value = get_great_common_divisor(t2, t1%t2);
+    }
     return !value ? t2 : value;
 }
 
