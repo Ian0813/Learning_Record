@@ -17,7 +17,7 @@
 #include <time.h>
 #include <stdbool.h>
 
-#define DELIMITER "-" 
+#define DELIMITER "-"
 #define MAX_MONTH 12
 #define MARK_VISIT 1
 
@@ -96,6 +96,7 @@ static void delete_year_table(year_table *obj) {
 
         for (int i = 0; i < obj->mlen; i++)
             free(obj->months[i]);
+        free(obj->months);
         free(obj->month_days);
         free(obj);
     }
